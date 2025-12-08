@@ -15,7 +15,7 @@ main proc
     int 21h
     mov bh,al
     
-    sub bl,bh   ; bl=bl-bh
+    sub bl,bh   ; bl=bl-bh 
     add bl,48
     
     mov ah,2

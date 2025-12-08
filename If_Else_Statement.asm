@@ -7,7 +7,13 @@ main proc
     int 21h
     mov bl,al
     
-    add bl,32  ; Convert UPPER to lower
+    mov ah,2
+    mov dl,32
+    int 21h
+    
+    mov ah,1
+    int 21h
+    mov bh,al
     
     mov ah,2
     mov dl,10
@@ -15,9 +21,23 @@ main proc
     mov dl,13
     int 21h
     
+    cmp bl,bh
+    jge L1          ; greater than or equal
+    
+    jmp L2
+    
+    
+    L1:
     mov ah,2
     mov dl,bl
     int 21h
+    jmp exit:
+    
+    L2:
+    mov ah,2
+    mov dl,bh
+    int 21h
+    jmp exit:
     
     exit:
     mov ah,4ch
