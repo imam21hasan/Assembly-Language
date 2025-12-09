@@ -2,18 +2,17 @@
 .stack 100h
 .code
 main proc
-    mov cx,256  ; 256 character
+    
+    mov cx,26
     
     mov ah,2
-    mov dl,0    ; started with zero
+    mov dl,'A'
+    top:
+    int 21h
+    inc dl
     
-    Loop:
-        int 21h
-        
-        inc dl      ; increment dl
-        dec cx      ; decrement cx
-        jnz Loop    ; Not Zero
-        
+    loop top:
+    
     exit:
     mov ah,4ch
     int 21h
